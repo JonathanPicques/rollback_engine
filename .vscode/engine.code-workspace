@@ -1,0 +1,27 @@
+{
+    "folders": [{"path": ".."}],
+    "settings": {
+        // files
+        "files.exclude": {
+            "**/.git": true,
+            "**/dist": true,
+            "**/build": true,
+            "**/public": true,
+            "**/node_modules": true
+        },
+        // editor
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": true
+        },
+        "debug.allowBreakpointsEverywhere": true,
+        // gitlens
+        "gitlens.codeLens.authors.enabled": false,
+        "gitlens.codeLens.recentChange.enabled": false,
+        // rust-analyzer
+        "rust-analyzer.lens.enable": false,
+        "rust-analyzer.inlayHints.enable": false,
+        "rust-analyzer.assist.importPrefix": "crate",
+        "rust-analyzer.assist.importGranularity": "module"
+    }
+}

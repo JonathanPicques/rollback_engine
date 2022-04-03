@@ -1,0 +1,104 @@
+{
+    "name": "rollback_engine",
+    "main": "./public/electron.js",
+    "author": "Jonathan Picques",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": "./",
+    "description": "Rollback Engine",
+    "build": {
+        "appId": "net.rootkernel.engine",
+        "productName": "Rollback Engine",
+        "mac": {
+            "target": "dmg"
+        },
+        "win": {
+            "target": "nsis"
+        },
+        "linux": {
+            "target": "deb"
+        },
+        "files": [
+            "build/**/*",
+            "node_modules/**/*"
+        ],
+        "directories": {
+            "buildResources": "public"
+        }
+    },
+    "scripts": {
+        "test": "react-app-rewired test",
+        "build": "react-app-rewired build",
+        "eject": "react-app-rewired eject",
+        "start": "react-app-rewired start",
+        "locale:extract": "formatjs extract 'src/**/*.{ts,tsx,vue}' --out-file lang.json",
+        "electron:start": "concurrently -k \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electronmon .\"",
+        "electron:package:mac": "yarn build && electron-builder -m -c.extraMetadata.main=build/electron.js",
+        "electron:package:win": "yarn build && electron-builder -w -c.extraMetadata.main=build/electron.js",
+        "electron:package:linux": "yarn build && electron-builder -l -c.extraMetadata.main=build/electron.js"
+    },
+    "eslintConfig": {
+        "plugins": [
+            "formatjs"
+        ],
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ],
+        "rules": {
+            "prefer-template": "error",
+            "formatjs/no-offset": "error",
+            "react-hooks/exhaustive-deps": [
+                "warn"
+            ],
+            "@typescript-eslint/consistent-type-imports": "error"
+        }
+    },
+    "browserslist": {
+        "production": [
+            "last 1 electron version"
+        ],
+        "development": [
+            "last 1 electron version"
+        ]
+    },
+    "dependencies": {
+        "@mantine/core": "^4.1.2",
+        "@mantine/hooks": "^4.1.2",
+        "@monaco-editor/react": "^4.4.1",
+        "@reduxjs/toolkit": "^1.8.1",
+        "@testing-library/jest-dom": "^5.14.1",
+        "@testing-library/react": "^13.0.0",
+        "@testing-library/user-event": "^14.0.4",
+        "@types/jest": "^27.0.1",
+        "@types/node": "^17.0.23",
+        "@types/react": "^17.0.20",
+        "@types/react-dom": "^17.0.9",
+        "babel-plugin-formatjs": "^10.3.18",
+        "electron-devtools-installer": "^3.2.0",
+        "monaco-editor": "^0.33.0",
+        "monaco-editor-webpack-plugin": "^7.0.1",
+        "rc-dock": "^3.2.10",
+        "react": "^18.0.0",
+        "react-app-rewired": "^2.2.1",
+        "react-dom": "^18.0.0",
+        "react-intl": "^5.24.7",
+        "react-redux": "^7.2.8",
+        "react-scripts": "5.0.0",
+        "react-use": "^17.3.2",
+        "redux-undo": "^1.0.1",
+        "tabler-icons-react": "^1.43.0",
+        "typescript": "^4.4.2",
+        "web-vitals": "^2.1.0"
+    },
+    "devDependencies": {
+        "@formatjs/cli": "^4.8.2",
+        "concurrently": "^7.1.0",
+        "cross-env": "^7.0.3",
+        "electron": "^18.0.1",
+        "electron-builder": "^22.14.13",
+        "electronmon": "^2.0.2",
+        "eslint-plugin-formatjs": "^3.0.0",
+        "wait-on": "^6.0.1"
+    }
+}
